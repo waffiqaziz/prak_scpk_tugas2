@@ -1,0 +1,74 @@
+[System]
+Name='FIMFilm'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=3
+NumRules=5
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='BintangFilm'
+Range=[0 10]
+NumMFs=3
+MF1='tidak_terkenal':'gaussmf',[1.77 0]
+MF2='kurang_terkenal':'gaussmf',[1.769 5]
+MF3='terkenal':'gaussmf',[1.769 10]
+
+[Input2]
+Name='Cerita'
+Range=[0 10]
+NumMFs=3
+MF1='tidak_menarik':'gaussmf',[1.769 0.1058]
+MF2='biasa_saja':'gaussmf',[1.769 5.026]
+MF3='menarik':'gaussmf',[1.771 10]
+
+[Input3]
+Name='Sutradara'
+Range=[0 10]
+NumMFs=2
+MF1='tidak_profesional':'trimf',[-4 0 7]
+MF2='profesional':'trimf',[3 10 14]
+
+[Input4]
+Name='Pemasaran'
+Range=[0 1]
+NumMFs=3
+MF1='kurang':'gaussmf',[0.1769 3.469e-18]
+MF2='cukup':'gaussmf',[0.177 0.5]
+MF3='luas':'gaussmf',[0.1771 1]
+
+[Output1]
+Name='Popularitas'
+Range=[0 10]
+NumMFs=3
+MF1='tidak_populer':'gaussmf',[1.769 3.469e-17]
+MF2='kurang_populer':'gaussmf',[1.769 5]
+MF3='populer':'gaussmf',[1.769 10]
+
+[Output2]
+Name='PenilaianPenonton'
+Range=[0 10]
+NumMFs=3
+MF1='membosankan':'gaussmf',[1.769 3.469e-17]
+MF2='biasa_saja':'gaussmf',[1.769 5]
+MF3='menyenangkan':'gaussmf',[1.769 10]
+
+[Output3]
+Name='Keuntungan'
+Range=[0 30]
+NumMFs=3
+MF1='rugi':'trimf',[0 5 10]
+MF2='cukup':'trimf',[10 15 20]
+MF3='untung':'trimf',[20 25 30]
+
+[Rules]
+3 3 2 3, 3 3 3 (1) : 1
+3 1 2 3, 2 2 2 (1) : 1
+3 2 1 3, 2 1 2 (1) : 1
+1 2 1 3, 2 1 1 (1) : 1
+3 3 2 1, 2 3 1 (1) : 1
